@@ -16,10 +16,11 @@ import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import com.example.uaspam.navigasi.PengelolaHalaman
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DealerApliaction(
+fun DealerAplication(
 ) {
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
     Scaffold(
@@ -31,7 +32,7 @@ fun DealerApliaction(
                 .fillMaxSize()
                 .padding(it)
         ) {
-//            PengelolaHalaman()
+           PengelolaHalaman()
 
         }
     }
