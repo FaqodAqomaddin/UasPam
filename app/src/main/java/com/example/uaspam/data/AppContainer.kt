@@ -4,6 +4,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 
 interface AppContainer {
     val motorRepository: MotorRepository
+    val pemilikRepository: PemilikRepository
 }
 
 class MotorContainer : AppContainer{
@@ -11,5 +12,8 @@ class MotorContainer : AppContainer{
 
     override val motorRepository: MotorRepository by lazy {
         MotorRepositoryImpl(firestore)
+    }
+    override val pemilikRepository: PemilikRepository by lazy {
+        PemilikRepositoryImpl(firestore)
     }
 }
