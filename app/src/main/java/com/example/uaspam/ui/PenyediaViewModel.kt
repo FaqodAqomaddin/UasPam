@@ -8,6 +8,7 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.uaspam.DealerApp
 import com.example.uaspam.ui.Add.AddViewModel
 import com.example.uaspam.ui.Detail.DetailMotorViewModel
+import com.example.uaspam.ui.Edit.EditMotorViewModel
 import com.example.uaspam.ui.Home.HomeMotorViewModel
 
 fun CreationExtras.apkikasiDealer(): DealerApp =
@@ -30,12 +31,12 @@ object PenyediaViewModel {
                 apkikasiDealer().container.motorRepository
             )
         }
-//
-//        initializer {
-//            EditViewModel(
-//                createSavedStateHandle(),
-//                apkikasiKontak().container.kontakRepository
-//            )
-//        }
+
+        initializer {
+            EditMotorViewModel(
+                createSavedStateHandle(),
+                apkikasiDealer().container.motorRepository
+            )
+        }
     }
 }
