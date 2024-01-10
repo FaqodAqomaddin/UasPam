@@ -17,7 +17,7 @@ interface MotorRepository {
     suspend fun save(motor: Motor): String
     suspend fun update(motor: Motor)
     suspend fun delete(motorno: String)
-    fun getKontakById(motorno: String): Flow<Motor>
+    fun getMotorById(motorno: String): Flow<Motor>
 }
 class MotorRepositoryImpl(private val firestore: FirebaseFirestore) : MotorRepository {
     override fun getAll(): Flow<List<Motor>> = flow {
@@ -51,11 +51,11 @@ class MotorRepositoryImpl(private val firestore: FirebaseFirestore) : MotorRepos
         firestore.collection("Motor").document(motorno).delete().await()
     }
 
-    override fun getKontakById(motorno: String): Flow<Motor> {
+    override fun getMotorById(motorno: String): Flow<Motor> {
         return flow {
             val snapshot = firestore.collection("Motor").document(motorno).get().await()
-            val kontak = snapshot.toObject(Motor::class.java)
-            emit(kontak!!)
+            val motor = snapshot.toObject(Motor::class.java)
+            emit(motor!!)
         }.flowOn(Dispatchers.IO)
     }
 
