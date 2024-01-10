@@ -150,11 +150,6 @@ fun DataMotor(
                 text = "Nama Merek : "+motor.merek,
                 style = MaterialTheme.typography.titleLarge,
             )
-            Spacer(Modifier.weight(1f))
-            Icon(
-                imageVector = Icons.Default.Phone,
-                contentDescription = null,
-            )
             Text(
                 text = "Jenis Motor : "+motor.jenis,
                 style = MaterialTheme.typography.titleMedium
