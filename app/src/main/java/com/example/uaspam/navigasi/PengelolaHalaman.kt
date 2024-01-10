@@ -12,6 +12,8 @@ import com.example.uaspam.ui.Add.AddScreen
 import com.example.uaspam.ui.Add.DestinasiEntry
 import com.example.uaspam.ui.Detail.DetailMotorDestination
 import com.example.uaspam.ui.Detail.DetailScreen
+import com.example.uaspam.ui.Edit.EditMotorDestination
+import com.example.uaspam.ui.Edit.EditScreen
 import com.example.uaspam.ui.Home.DestinasiHomeMotor
 import com.example.uaspam.ui.Home.HomeScreen
 
@@ -34,16 +36,34 @@ fun PengelolaHalaman(navController: NavHostController = rememberNavController())
         composable(DestinasiEntry.route) {
             AddScreen(navigateBack = { navController.popBackStack() })
         }
-        composable(route = DetailMotorDestination.routeWithArgs,
+        composable(
+            route = DetailMotorDestination.routeWithArgs,
             arguments = listOf(navArgument(DetailMotorDestination.MotorId) {
                 type = NavType.StringType
             })
         ) { backStackEntry ->
-            val kontakId = backStackEntry.arguments?.getString(DetailMotorDestination.MotorId)
-            kontakId?.let {
+            val motorId = backStackEntry.arguments?.getString(DetailMotorDestination.MotorId)
+            motorId?.let {
                 DetailScreen(
-                    navigateToEditItem = {},
+                    navigateToEditItem = {
+                        navController.navigate("${EditMotorDestination.route}/$motorId")
+                        println("kontakId: $motorId")
+                    },
                     navigateBack = { navController.popBackStack() })
+            }
+        }
+        composable(
+            route = EditMotorDestination.routeWithArgs,
+            arguments = listOf(navArgument(EditMotorDestination.MotorId) {
+                type = NavType.StringType
+            })
+        ) { backStackEntry ->
+            val motorId = backStackEntry.arguments?.getString(EditMotorDestination.MotorId)
+            motorId?.let {
+                EditScreen(
+                    navigateBack = { navController.popBackStack() },
+                    onNavigateUp = { navController.navigateUp() }
+                )
             }
         }
     }
