@@ -43,13 +43,13 @@ import com.example.uaspam.ui.DealerTopAppBar
 object DetailPemilikDestination : DestinasiNavigasi {
     override val route = "item_details"
     override val titleRes = "Detail Pemilik"
-    const val pemilikId = "itemId"
+    const val pemilikId = "itemIdmotor"
     val routeWithArgs = "$route/{$pemilikId}"
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DetailScreen(
+fun DetailPemilikScreen(
     navigateToEditItem: (String) -> Unit,
     navigateBack: () -> Unit,
     modifier: Modifier = Modifier,
