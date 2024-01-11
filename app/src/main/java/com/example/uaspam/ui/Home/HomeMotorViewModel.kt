@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 
 sealed class MotorUIState {
-    data class Success(val kontak: Flow<List<Motor>>) : MotorUIState()
+    data class Success(val motor: Flow<List<Motor>>) : MotorUIState()
     object Error : MotorUIState()
     object Loading : MotorUIState()
 }

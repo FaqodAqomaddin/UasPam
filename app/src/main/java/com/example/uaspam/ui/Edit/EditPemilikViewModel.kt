@@ -7,7 +7,6 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.uaspam.data.PemilikRepository
-import com.example.uaspam.ui.AddEvent
 import com.example.uaspam.ui.AddEventPemilik
 import com.example.uaspam.ui.AddUIStatePemilik
 import com.example.uaspam.ui.toPemilik
