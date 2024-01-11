@@ -17,7 +17,7 @@ interface PemilikRepository {
     suspend fun save(pemilik: Pemilik): String
     suspend fun update(pemilik: Pemilik)
     suspend fun delete(pemilikId: String)
-    fun getKontakById(pemilikId: String): Flow<Pemilik>
+    fun getPemilikById(pemilikId: String): Flow<Pemilik>
 }
 
 class PemilikRepositoryImpl(private val firestore: FirebaseFirestore) : PemilikRepository {
@@ -52,7 +52,7 @@ class PemilikRepositoryImpl(private val firestore: FirebaseFirestore) : PemilikR
         firestore.collection("Pemilik").document(pemilikId).delete().await()
     }
 
-    override fun getKontakById(pemilikId: String): Flow<Pemilik> {
+    override fun getPemilikById(pemilikId: String): Flow<Pemilik> {
         return flow {
             val snapshot = firestore.collection("Pemilik").document(pemilikId).get().await()
             val pemilik = snapshot.toObject(Pemilik::class.java)
