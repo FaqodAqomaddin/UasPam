@@ -48,7 +48,7 @@ fun AddScreenPemilik(
         modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             DealerTopAppBar(
-                title = DestinasiEntry.titleRes,
+                title = "Input Data Pemilik",
                 canNavigateBack = true,
                 scrollBehavior = scrollBehavior,
                 navigateUp = navigateBack
