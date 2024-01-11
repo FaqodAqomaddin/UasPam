@@ -160,8 +160,15 @@ fun ItemDetails(
                 )
             )
             ItemDetailsRow(
-                labelResID ="NKeterangan",
+                labelResID ="Keterangan",
                 itemDetail = motor.keterangan,
+                modifier = Modifier.padding(
+                    horizontal = 12.dp
+                )
+            )
+            ItemDetailsRow(
+                labelResID ="Pemilik",
+                itemDetail = motor.pemilik,
                 modifier = Modifier.padding(
                     horizontal = 12.dp
                 )

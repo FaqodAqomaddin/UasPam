@@ -61,7 +61,7 @@ fun PengelolaHalaman(navController: NavHostController = rememberNavController())
                 DetailMotorScreen(
                     navigateToEditItem = {
                         navController.navigate("${EditMotorDestination.route}/$motorId")
-                        println("kontakId: $motorId")
+                        println("motorId: $motorId")
                     },
                     navigateBack = { navController.popBackStack() })
             }
@@ -84,9 +84,9 @@ fun PengelolaHalaman(navController: NavHostController = rememberNavController())
             HomeScreenPemilik(
                 navigateBack = {navController.popBackStack()},
                 navigateToItemEntry = { navController.navigate(DestinasiEntryPemilik.route) },
-                onDetailClick = { itemIdmotor ->
-                    navController.navigate("${DetailPemilikDestination.route}/$itemIdmotor")
-                    println("itemId: $itemIdmotor")
+                onDetailClick = { itemId ->
+                    navController.navigate("${DetailPemilikDestination.route}/$itemId")
+                    println("itemId: $itemId")
                 })
         }
         composable(DestinasiEntryPemilik.route) {

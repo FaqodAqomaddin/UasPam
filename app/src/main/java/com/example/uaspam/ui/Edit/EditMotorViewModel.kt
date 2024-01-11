@@ -1,5 +1,6 @@
 package com.example.uaspam.ui.Edit
 
+import androidx.compose.runtime.State
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -23,6 +24,9 @@ class EditMotorViewModel(
     var kontakUiState by mutableStateOf(AddUIState())
         private set
 
+    private val _namaList = mutableStateOf<List<String>>(emptyList())
+    val namaList: State<List<String>> get() = _namaList
+
     private val motorId: String = checkNotNull(savedStateHandle[EditMotorDestination.MotorId])
 
     init {
@@ -34,6 +38,11 @@ class EditMotorViewModel(
                     .toUIStateMotor()
         }
     }
+
+    suspend fun getNamaList() {
+        _namaList.value = motorrepository.getNamaList().first()
+    }
+
 
     fun updateUIState(addEvent: AddEvent) {
         kontakUiState = kontakUiState.copy(addEvent = addEvent)

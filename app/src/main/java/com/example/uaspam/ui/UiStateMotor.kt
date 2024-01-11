@@ -10,14 +10,16 @@ data class AddEvent(
     val no: String = "",
     val merek: String = "",
     val jenis: String = "",
-    val keterangan: String = ""
+    val keterangan: String = "",
+    val pemilik : String = ""
 )
 
 fun AddEvent.toMotor() = Motor(
     no = no,
     merek = merek,
     jenis = jenis,
-    keterangan = keterangan
+    keterangan = keterangan,
+    pemilik = pemilik
 )
 
 data class DetailUIState(
@@ -29,7 +31,8 @@ fun Motor.toDetailMotor(): AddEvent =
         no = no,
         merek = merek,
         jenis = jenis,
-        keterangan = keterangan
+        keterangan = keterangan,
+        pemilik = pemilik
     )
 
 fun Motor.toUIStateMotor(): AddUIState = AddUIState(

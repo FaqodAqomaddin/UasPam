@@ -161,6 +161,10 @@ fun DataMotor(
                 text = "Keterangan : "+motor.keterangan,
                 style = MaterialTheme.typography.titleMedium
             )
+            Text(
+                text = "Pemilik : "+motor.pemilik,
+                style = MaterialTheme.typography.titleMedium
+            )
         }
     }
 }

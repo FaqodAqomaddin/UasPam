@@ -2,8 +2,12 @@ package com.example.uaspam.ui.Add
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
@@ -11,11 +15,18 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.text.input.KeyboardType
@@ -45,6 +56,13 @@ fun AddScreen(
     val coroutineScope = rememberCoroutineScope()
     val scrollBehavior = TopAppBarDefaults.enterAlwaysScrollBehavior()
 
+    var pemilikList by remember { mutableStateOf(emptyList<String>()) }
+
+    // Ambil data dari Firestore saat komponen pertama kali dibuat
+    LaunchedEffect(key1 = true) {
+        addViewModel.getNamaList()
+    }
+
     Scaffold(
         modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
@@ -66,6 +84,7 @@ fun AddScreen(
                     navigateBack()
                 }
             },
+            pemilikList = pemilikList,
             modifier = Modifier
                 .padding(innerPadding)
                 .verticalScroll(rememberScrollState())
@@ -79,6 +98,7 @@ fun EntryBody(
     addUIState: AddUIState,
     onMotorValueChange: (AddEvent) -> Unit,
     onSaveClick: () -> Unit,
+    pemilikList: List<String>,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -88,6 +108,7 @@ fun EntryBody(
         FormInput(
             addEvent = addUIState.addEvent,
             onValueChange = onMotorValueChange,
+            pemilikList = pemilikList,
             modifier = Modifier.fillMaxWidth()
         )
         Button(
@@ -104,6 +125,7 @@ fun EntryBody(
 @Composable
 fun FormInput(
     addEvent: AddEvent,
+    pemilikList: List<String>,
     modifier: Modifier = Modifier,
     onValueChange: (AddEvent) -> Unit = {},
     enabled: Boolean = true
@@ -136,6 +158,42 @@ fun FormInput(
             enabled = enabled,
             singleLine = true
         )
+        PemilikRadioGroup(
+            pemilikList = pemilikList,
+            selectedPemilik = addEvent.pemilik,
+            onPemilikSelected = { onValueChange(addEvent.copy(pemilik = it)) },
+            enabled = enabled
+        )
 
+    }
+}
+
+@Composable
+fun PemilikRadioGroup(
+    pemilikList: List<String>,
+    selectedPemilik: String,
+    onPemilikSelected: (String) -> Unit,
+    enabled: Boolean
+) {
+    Column {
+        Text("Pemilik")
+        Spacer(modifier = Modifier.height(4.dp))
+
+        pemilikList.forEach { pemilik ->
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(8.dp)
+            ) {
+                RadioButton(
+                    selected = pemilik == selectedPemilik,
+                    onClick = { onPemilikSelected(pemilik) },
+                    enabled = enabled
+                )
+                Spacer(modifier = Modifier.width(8.dp))
+                Text(text = pemilik)
+            }
+        }
     }
 }
