@@ -44,6 +44,7 @@ object DestinasiHomeMotor : DestinasiNavigasi {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
+    navigateBack: () -> Unit,
     navigateToItemEntry: () -> Unit,
     modifier: Modifier = Modifier,
     onDetailClick: (String) -> Unit = {},
@@ -55,9 +56,10 @@ fun HomeScreen(
         modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             DealerTopAppBar(
-                title = "Kontak",
-                canNavigateBack = false,
-                scrollBehavior = scrollBehavior
+                title = "Motor",
+                canNavigateBack = true,
+                scrollBehavior = scrollBehavior,
+                navigateUp = navigateBack
             )
         },
         floatingActionButton = {
