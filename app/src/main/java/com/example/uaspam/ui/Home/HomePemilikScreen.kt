@@ -43,6 +43,7 @@ object DestinasiHomePemilik : DestinasiNavigasi {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreenPemilik(
+    navigateBack: () -> Unit,
     navigateToItemEntry: () -> Unit,
     modifier: Modifier = Modifier,
     onDetailClick: (String) -> Unit = {},
@@ -55,8 +56,9 @@ fun HomeScreenPemilik(
         topBar = {
             DealerTopAppBar(
                 title = "Pemilik Motor",
-                canNavigateBack = false,
-                scrollBehavior = scrollBehavior
+                canNavigateBack = true,
+                scrollBehavior = scrollBehavior,
+                navigateUp = navigateBack
             )
         },
         floatingActionButton = {
