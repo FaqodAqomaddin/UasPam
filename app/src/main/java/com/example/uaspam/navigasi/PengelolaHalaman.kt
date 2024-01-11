@@ -84,9 +84,9 @@ fun PengelolaHalaman(navController: NavHostController = rememberNavController())
             HomeScreenPemilik(
                 navigateBack = {navController.popBackStack()},
                 navigateToItemEntry = { navController.navigate(DestinasiEntryPemilik.route) },
-                onDetailClick = { itemId ->
-                    navController.navigate("${DetailPemilikDestination.route}/$itemId")
-                    println("itemId: $itemId")
+                onDetailClick = { pemilikId ->
+                    navController.navigate("${DetailPemilikDestination.route}/$pemilikId")
+                    println("itemId: $pemilikId")
                 })
         }
         composable(DestinasiEntryPemilik.route) {

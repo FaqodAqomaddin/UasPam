@@ -43,7 +43,7 @@ import com.example.uaspam.ui.DealerTopAppBar
 object DetailPemilikDestination : DestinasiNavigasi {
     override val route = "item_details"
     override val titleRes = "Detail Pemilik"
-    const val pemilikId = "itemId"
+    const val pemilikId = "pemilikId"
     val routeWithArgs = "$route/{$pemilikId}"
 }
 

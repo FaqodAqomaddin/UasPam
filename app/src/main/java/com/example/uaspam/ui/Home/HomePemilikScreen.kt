@@ -74,9 +74,9 @@ fun HomeScreenPemilik(
             }
         },
     ) { innerPadding ->
-        val uiStateSiswa by viewModel.homeUIStatePemilik.collectAsState()
+        val uiStatePemilik by viewModel.homeUIStatePemilik.collectAsState()
         BodyPemilik(
-            itemPemilik = uiStateSiswa.listPemilik,
+            itemPemilik = uiStatePemilik.listPemilik,
             modifier = Modifier
                 .padding(innerPadding)
                 .fillMaxSize(),

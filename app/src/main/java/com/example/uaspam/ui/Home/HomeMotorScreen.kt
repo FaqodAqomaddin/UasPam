@@ -75,9 +75,9 @@ fun HomeScreen(
             }
         },
     ) { innerPadding ->
-        val uiStateSiswa by viewModel.homeUIState.collectAsState()
+        val uiStateMotor by viewModel.homeUIState.collectAsState()
         BodyHome(
-            itemMotor = uiStateSiswa.listMotor,
+            itemMotor = uiStateMotor.listMotor,
             modifier = Modifier
                 .padding(innerPadding)
                 .fillMaxSize(),
