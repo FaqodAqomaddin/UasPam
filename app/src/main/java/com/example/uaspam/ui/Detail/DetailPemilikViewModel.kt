@@ -24,7 +24,7 @@ class DetailPemilikViewModel(
     val pemilikId: String = checkNotNull(savedStateHandle[DetailPemilikDestination.pemilikId])
 
     val pemilikuiState: StateFlow<DetailUIStatePemilik> =
-        pemilikrepository.getKontakById(pemilikId)
+        pemilikrepository.getPemilikById(pemilikId)
             .filterNotNull()
             .map {
                 DetailUIStatePemilik(addEventPemilik = it.toDetailPemilik())
